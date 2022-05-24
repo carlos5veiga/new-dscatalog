@@ -1,5 +1,6 @@
 package com.ex.dscatalog.controllers;
 
+import com.ex.dscatalog.dto.CategoryDTO;
 import com.ex.dscatalog.entities.CategoryEntity;
 import com.ex.dscatalog.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
     @GetMapping
-    public ResponseEntity<List<CategoryEntity>> findAll() {
-        List<CategoryEntity> list = categoryService.findAll();
+    public ResponseEntity<List<CategoryDTO>> findAll() {
+        List<CategoryDTO> list = categoryService.findAll();
         return ResponseEntity.ok(list);
     }
 }
