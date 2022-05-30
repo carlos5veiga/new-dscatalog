@@ -22,11 +22,21 @@ public class CategoryService {
                 .categoryEntityToCategoryDTO(categoryRepository.findAll());
     }
 
+    @Transactional(readOnly = true)
     public CategoryDTO findById(Long id) {
         return CategoryMapper
                 .getInstance()
                 .categoryEntityToCategoryDTO(categoryRepository
                         .findById(id)
                         .orElseThrow(() -> new EntityNotFoundException("Entity not found")));
+    }
+
+    @Transactional
+    public CategoryDTO save(CategoryDTO categoryDTO) {
+        return CategoryMapper
+                .getInstance()
+                .categoryEntityToCategoryDTO(categoryRepository.save(CategoryMapper
+                        .getInstance()
+                        .categoryDTOToCategoryEntity(categoryDTO)));
     }
 }
